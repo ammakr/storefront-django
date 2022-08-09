@@ -1,1 +1,0 @@
-# storefront-django-mosh
