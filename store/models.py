@@ -1,5 +1,8 @@
-from msilib.schema import Class
 from django.db import models
+
+class Promotion(models.Model):
+    description = models.CharField(max_length=255)
+    discount = models.FloatField()
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -8,6 +11,7 @@ class Product(models.Model):
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey('Collection', on_delete=models.PROTECT)
+    promotions = models.ManyToManyField(Promotion)
 
 class Customer(models.Model):
     MEMBERSHIP_BRONZE = 'B'
@@ -45,6 +49,7 @@ class Address(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
+    featured_product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name='+')
 
 class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
