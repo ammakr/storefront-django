@@ -81,4 +81,3 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
 
-# Timestamp; section 5 - 15 annotating objects
